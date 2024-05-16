@@ -13,7 +13,7 @@ use UnexpectedValueException;
  * Sign XML Documents with Digital Signatures (XMLDSIG).
  */
 
- //este es el modificado por adrian v1
+ //este es el modificado por adrian v2
 
 final class XmlSigner
 {
