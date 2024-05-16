@@ -71,7 +71,7 @@ final class XmlSigner
             throw new XmlSignerException('Invalid XML document element');
         }
 
-        $canonicalData = $element->C14N(true, false);
+        $canonicalData = $element->C14N(false, false);
 
         // Calculate and encode digest value
         $digestValue = $this->cryptoSigner->computeDigest($canonicalData);
@@ -151,23 +151,23 @@ final class XmlSigner
         $keyInfoElement = $xml->createElement('KeyInfo');
         $signatureElement->appendChild($keyInfoElement);
 
-        $keyValueElement = $xml->createElement('KeyValue');
-        $keyInfoElement->appendChild($keyValueElement);
+        // $keyValueElement = $xml->createElement('KeyValue');
+        // $keyInfoElement->appendChild($keyValueElement);
 
-        $rsaKeyValueElement = $xml->createElement('RSAKeyValue');
-        $keyValueElement->appendChild($rsaKeyValueElement);
+        // $rsaKeyValueElement = $xml->createElement('RSAKeyValue');
+        // $keyValueElement->appendChild($rsaKeyValueElement);
 
-        $modulus = $this->cryptoSigner->getPrivateKeyStore()->getModulus();
-        if ($modulus) {
-            $modulusElement = $xml->createElement('Modulus', $modulus);
-            $rsaKeyValueElement->appendChild($modulusElement);
-        }
+        // $modulus = $this->cryptoSigner->getPrivateKeyStore()->getModulus();
+        // if ($modulus) {
+        //     $modulusElement = $xml->createElement('Modulus', $modulus);
+        //     $rsaKeyValueElement->appendChild($modulusElement);
+        // }
 
-        $publicExponent = $this->cryptoSigner->getPrivateKeyStore()->getPublicExponent();
-        if ($publicExponent) {
-            $exponentElement = $xml->createElement('Exponent', $publicExponent);
-            $rsaKeyValueElement->appendChild($exponentElement);
-        }
+        // $publicExponent = $this->cryptoSigner->getPrivateKeyStore()->getPublicExponent();
+        // if ($publicExponent) {
+        //     $exponentElement = $xml->createElement('Exponent', $publicExponent);
+        //     $rsaKeyValueElement->appendChild($exponentElement);
+        // }
 
         // If certificates are loaded attach them to the KeyInfo element
         $certificates = $this->cryptoSigner->getPrivateKeyStore()->getCertificates();
