@@ -12,6 +12,9 @@ use UnexpectedValueException;
 /**
  * Sign XML Documents with Digital Signatures (XMLDSIG).
  */
+
+ //este es el modificado por adrian v1
+
 final class XmlSigner
 {
     private string $referenceUri = '';
@@ -42,7 +45,7 @@ final class XmlSigner
         $xml = new DOMDocument();
 
         // Whitespaces must be preserved
-        $xml->preserveWhiteSpace = true;
+        $xml->preserveWhiteSpace = false;
         $xml->formatOutput = false;
 
         $xml->loadXML($data);
